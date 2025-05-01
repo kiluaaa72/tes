@@ -162,18 +162,23 @@
   </audio>
 
   <script>
-    function checkName() {
-      const name = document.getElementById('name').value.trim().toLowerCase();
-      const messageContainer = document.getElementById('message-container');
-      
-      if (name === 'reffa') {
-        messageContainer.style.display = 'block';
-        document.querySelector('.login-area').style.display = 'none';
-        document.querySelector('.audio-control').style.display = 'block';
-      } else {
-        alert('Hahaha, aku tau kamu bukan Reffa. Kamu coba pakai nama orang ya?');
-      }
-    }
+function checkName() {
+  const name = document.getElementById('name').value.trim().toLowerCase();
+  const messageContainer = document.getElementById('message-container');
+  const footer = document.querySelector('.footer');
+
+  messageContainer.style.display = 'block';
+  document.querySelector('.login-area').style.display = 'none';
+  document.querySelector('.audio-control').style.display = 'block';
+  footer.style.opacity = 1;
+
+  if (name === 'reffa') {
+    alert('Selamat membaca, Reffa 🌸');
+  } else {
+    alert('Hahaha, aku tau kamu bukan Reffa. Kamu coba pakai nama orang ya? 😆');
+  }
+}
+
 
     function toggleAudio() {
       const audio = document.getElementById('audio');
