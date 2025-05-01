@@ -234,6 +234,13 @@
       } else {
         alert("Ups, ini bukan untuk kamu 😋");
       }
+      function start() {
+  const name = document.getElementById("nameInput").value.trim().toLowerCase();
+  document.getElementById("login").style.display = "none";
+  document.querySelector(".container").style.display = "block";
+  showParagraphs();
+}
+
     }
 
     const audio = document.getElementById("audio");
