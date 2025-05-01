@@ -96,7 +96,7 @@
       text-align: center;
       margin-top: 100px;
     }
-    
+
     #login input {
       padding: 10px;
       font-size: 16px;
@@ -115,6 +115,14 @@
       cursor: pointer;
     }
 
+    .final-message {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 60px;
+      color: #b76e79;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
   </style>
 </head>
 <body>
@@ -130,6 +138,7 @@
       <div class="typing-effect" id="typing"></div>
     </div>
     <div class="footer">— Lana</div>
+    <div class="final-message" id="finalMessage">Kata maaf dan terima kasih dari aku untuk kamu akan seperti judul lagu ini: <strong>KEKAL</strong></div>
   </div>
 
   <button class="audio-control" onclick="toggleAudio()">🎵 Putar Musik</button>
@@ -185,8 +194,11 @@
           }, 100);
           if (i === paragraphs.length - 1) {
             document.querySelector(".footer").style.opacity = 1;
+            setTimeout(() => {
+              document.getElementById("finalMessage").style.opacity = 1;
+            }, 8000);
           }
-        }, i * 10000);
+        }, i * 8000);
       });
     }
 
