@@ -18,7 +18,7 @@
       flex-direction: column;
       align-items: center;
     }
-    
+
     .container {
       max-width: 800px;
       width: 90%;
@@ -32,25 +32,21 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .login-area {
-      margin: 20px 0;
-      text-align: center;
-    }
-
     .message-container {
       background: rgba(255, 255, 255, 0.9);
       border-radius: 15px;
       padding: 25px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       margin-bottom: 30px;
-      display: none; /* Pesan disembunyikan terlebih dahulu */
     }
 
-    .typing-effect {
+    .typing-effect p {
       font-size: 1.1em;
       line-height: 1.8;
-      overflow: hidden;
-      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+      margin-bottom: 20px;
     }
 
     .footer {
@@ -59,11 +55,7 @@
       color: #666;
       font-size: 14px;
       opacity: 0;
-      animation: fadeIn 1s 6s forwards;
-    }
-
-    audio {
-      display: none; /* Sembunyikan audio default */
+      transition: opacity 1s ease;
     }
 
     .audio-control {
@@ -100,90 +92,107 @@
       50% { transform: translateY(-20px) rotate(10deg); }
     }
 
+    #login {
+      text-align: center;
+      margin-top: 100px;
+    }
+    
+    #login input {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #login button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #b76e79;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <div id="login">
+    <input type="text" id="nameInput" placeholder="Masukkan nama kamu...">
+    <button onclick="start()">Masuk</button>
+  </div>
+
+  <div class="container" style="display:none">
     <h1>Untuk Reffa</h1>
-
-    <div class="login-area">
-      <label for="name">Masukkan nama kamu:</label>
-      <input type="text" id="name" placeholder="Nama Kamu" />
-      <button onclick="checkName()">Submit</button>
+    <div class="message-container">
+      <div class="typing-effect" id="typing"></div>
     </div>
-
-    <div class="message-container" id="message-container">
-      <div class="typing-effect">
-        <p>Reffa,<br>
-        Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.</p>
-
-        <p>Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku.<br>
-        <em>I was the one who failed you. And you had every right to walk away.</em></p>
-
-        <p>Setiap hari setelah itu, aku ulang-ulang di kepala aku: “Kenapa harus aku yang nyakitin dia?”<br>
-        Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.</p>
-
-        <p>Aku tahu kamu suka Nadin, dan jujur aku pun mulai sering dengerin lagu-lagunya. Tapi bukan buat bikin kamu luluh—just... karena aku pengen ngerti sedikit aja isi dari dunia kamu yang pernah aku sentuh. Dan tiap lirik itu sekarang kerasa kayak teguran. Kadang bukan lirik sedihnya, tapi lirik yang justru manis banget, sampai aku sadar: "Ah, ini tuh cara dia ngelihat dunia. Dan aku merusaknya."</p>
-
-        <p>Misalnya waktu aku denger lirik: <em>“Bukan maksudku membawa bencana, aku hanya rindu”</em><br>
-        Aku langsung diem. Because that’s exactly how I feel right now. Aku ngerusak semuanya, dan setelah itu cuma bisa ngerasa kangen yang gak bisa aku sampaikan.</p>
-
-        <p>Aku gak mau kamu mikir aku sok-sokan nyari perhatian. Karena aku gak mau kamu balik cuma karena kasihan. No, not like that. Aku cuma pengen kamu tau: aku mikirin kamu. Aku ngerti kenapa kamu marah, kenapa kamu nutup akses komunikasi. And I won’t force that door open. Tapi aku harap, kamu gak nutup rapat selamanya.</p>
-
-        <p>Setiap ada notifikasi di HP, otak aku langsung mikir, “Mungkin ini dia?” Tapi ya enggak. Kamu gak ada. Kamu pergi beneran.<br>
-        Dan sekarang aku baru ngerti... kehilangan bukan cuma tentang gak bisa lihat kamu lagi, tapi tentang gak punya kesempatan buat minta maaf langsung ke orang yang paling layak aku mintain maaf.</p>
-
-        <p>Aku juga manusia, Reffa. Aku bisa salah. Tapi aku juga punya rasa. Dan sekarang rasanya tuh kayak berdiri di tengah panggung kosong yang pernah penuh suara kamu.<br>
-        Kadang aku ngebayangin, kalo misalnya satu hari kita ketemu lagi, aku pengen banget bilang hal yang gak sempat aku sampaikan: “Aku gak pernah niat buat nyakitin kamu. Aku cuma terlalu bodoh buat jaga kamu.”</p>
-
-        <p>I won’t ask you to forgive me. I just wish you’d remember that I never wanted to be your regret. I wanted to be your safe place. Tapi kenyataannya aku malah jadi alasan kamu pergi.</p>
-
-        <p>Mungkin sekarang semua tentang aku udah kabur dari ingatan kamu—dan kalau iya, aku bisa terima itu. Tapi kalau ada satu-dua hal kecil yang masih tersisa, biarlah itu jadi kenangan yang gak bikin kamu marah lagi suatu hari nanti.</p>
-
-        <p>Biar waktu yang jawab semuanya. Kalau kamu butuh waktu seminggu, sebulan, setahun, bahkan selamanya... I’ll live with that. Tapi aku akan tetap berharap, someday, kamu bisa lihat ke belakang dan tau kalau aku gak cuma penyesalan—aku adalah seseorang yang betul-betul peduli, tapi datang dengan cara yang salah.</p>
-
-        <p>Aku gak akan ganggu kamu lagi, Reffa. Tapi tolong jangan lupakan aku sepenuhnya. Please don’t treat me like I never existed. Itu aja.</p>
-
-        <p>Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.</p>
-
-        <p>Dari aku, yang dulu sempat jadi bagian hidup kamu.<br>
-        Dan sampai sekarang, masih bertaut, walau kamu udah lepasin.</p>
-      </div>
-    </div>
-
     <div class="footer">— Lana</div>
   </div>
 
   <button class="audio-control" onclick="toggleAudio()">🎵 Putar Musik</button>
   <div class="floating-heart">❤️</div>
 
-  <audio id="audio" loop>
+  <audio id="audio" loop autoplay>
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mpeg">
   </audio>
 
   <script>
-function checkName() {
-  const name = document.getElementById('name').value.trim().toLowerCase();
-  const messageContainer = document.getElementById('message-container');
-  const footer = document.querySelector('.footer');
+    const paragraphs = [
+      "Reffa, Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.",
+      "Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku. I was the one who failed you. And you had every right to walk away.",
+      "Setiap hari setelah itu, aku ulang-ulang di kepala aku: 'Kenapa harus aku yang nyakitin dia?' Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.",
+      "Aku tahu kamu suka Nadin, dan jujur aku pun mulai sering dengerin lagu-lagunya. Tapi bukan buat bikin kamu luluh—just... karena aku pengen ngerti sedikit aja isi dari dunia kamu yang pernah aku sentuh.",
+      "Misalnya waktu aku denger lirik: 'Bukan maksudku membawa bencana, aku hanya rindu'. Aku langsung diem. Because that’s exactly how I feel right now. Aku ngerusak semuanya, dan setelah itu cuma bisa ngerasa kangen yang gak bisa aku sampaikan.",
+      "Aku gak mau kamu mikir aku sok-sokan nyari perhatian. Karena aku gak mau kamu balik cuma karena kasihan. No, not like that. Aku cuma pengen kamu tau: aku mikirin kamu. Aku ngerti kenapa kamu marah, kenapa kamu nutup akses komunikasi. And I won’t force that door open.",
+      "Setiap ada notifikasi di HP, otak aku langsung mikir, 'Mungkin ini dia?' Tapi ya enggak. Kamu gak ada. Kamu pergi beneran. Dan sekarang aku baru ngerti... kehilangan bukan cuma tentang gak bisa lihat kamu lagi, tapi tentang gak punya kesempatan buat minta maaf langsung ke orang yang paling layak aku mintain maaf.",
+      "Aku juga manusia, Reffa. Aku bisa salah. Tapi aku juga punya rasa. Dan sekarang rasanya tuh kayak berdiri di tengah panggung kosong yang pernah penuh suara kamu.",
+      "Kadang aku ngebayangin, kalo misalnya satu hari kita ketemu lagi, aku pengen banget bilang hal yang gak sempat aku sampaikan: 'Aku gak pernah niat buat nyakitin kamu. Aku cuma terlalu bodoh buat jaga kamu.'",
+      "I won’t ask you to forgive me. I just wish you’d remember that I never wanted to be your regret. I wanted to be your safe place. Tapi kenyataannya aku malah jadi alasan kamu pergi.",
+      "Mungkin sekarang semua tentang aku udah kabur dari ingatan kamu—dan kalau iya, aku bisa terima itu. Tapi kalau ada satu-dua hal kecil yang masih tersisa, biarlah itu jadi kenangan yang gak bikin kamu marah lagi suatu hari nanti.",
+      "Biar waktu yang jawab semuanya. Kalau kamu butuh waktu seminggu, sebulan, setahun, bahkan selamanya... I’ll live with that. Tapi aku akan tetap berharap, someday, kamu bisa lihat ke belakang dan tau kalau aku gak cuma penyesalan—aku adalah seseorang yang betul-betul peduli, tapi datang dengan cara yang salah.",
+      "Aku gak akan ganggu kamu lagi, Reffa. Tapi tolong jangan lupakan aku sepenuhnya. Please don’t treat me like I never existed. Itu aja.",
+      "Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.",
+      "Dari aku, yang dulu sempat jadi bagian hidup kamu. Dan sampai sekarang, masih bertaut, walau kamu udah lepasin."
+    ];
 
-  messageContainer.style.display = 'block';
-  document.querySelector('.login-area').style.display = 'none';
-  document.querySelector('.audio-control').style.display = 'block';
-  footer.style.opacity = 1;
+    function start() {
+      const name = document.getElementById("nameInput").value.trim().toLowerCase();
+      if (!name) return alert("Tulis namanya dulu dong");
+      if (name === "reffa") {
+        alert("Akhirnya dibaca juga. Selamat membaca, Reffa 🤍");
+      } else {
+        alert("Hahaha, aku tahu kamu bukan Reffa. Tapi gapapa, tetap bisa baca 😊");
+      }
 
-  if (name === 'reffa') {
-    alert('Selamat membaca, Reffa 🌸');
-  } else {
-    alert('Hahaha, aku tau kamu bukan Reffa. Kamu coba pakai nama orang ya? 😆');
-  }
-}
+      document.getElementById("login").style.display = "none";
+      document.querySelector(".container").style.display = "block";
+      showParagraphs();
+    }
 
+    function showParagraphs() {
+      const typingDiv = document.getElementById("typing");
+      paragraphs.forEach((text, i) => {
+        setTimeout(() => {
+          const p = document.createElement("p");
+          p.textContent = text;
+          typingDiv.appendChild(p);
+          setTimeout(() => {
+            p.style.opacity = 1;
+            p.style.transform = "translateY(0)";
+          }, 100);
+          if (i === paragraphs.length - 1) {
+            document.querySelector(".footer").style.opacity = 1;
+          }
+        }, i * 13000);
+      });
+    }
 
     function toggleAudio() {
       const audio = document.getElementById('audio');
       const button = document.querySelector('.audio-control');
-      
       if (audio.paused) {
         audio.play();
         button.textContent = '⏸️ Jeda Musik';
