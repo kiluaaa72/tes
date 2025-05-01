@@ -123,6 +123,25 @@
       opacity: 0;
       transition: opacity 2s ease;
     }
+
+    #popupVideo {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      background-color: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    #popupVideo video {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -144,73 +163,76 @@
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini reffa</button>
   <div class="floating-heart">❤️</div>
 
+  <div id="popupVideo">
+    <video id="localVideo" controls autoplay>
+      <source src="12.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+  </div>
+
   <audio id="audio" loop autoplay>
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mpeg">
   </audio>
 
   <script>
     const paragraphs = [
-      "Reffa, Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.",
-      "Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku. I was the one who failed you. And you had every right to walk away.",
-      "Setiap hari setelah itu, aku ulang-ulang di kepala aku: 'Kenapa harus aku yang nyakitin dia?' Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.",
-      "Aku tahu kamu suka Nadin, dan jujur aku pun mulai sering dengerin lagu-lagunya. Tapi bukan buat bikin kamu luluh—just... karena aku pengen ngerti sedikit aja dari apa yang kamu sukain.",
-      "Misalnya waktu aku pernah denger kata: 'Bukan maksudku membawa bencana, aku hanya rindu'. Aku langsung diem. Because that’s exactly how I feel right now. Aku ngerusak semuanya, dan setelah itu cuma bisa ngerasa kangen yang gak bisa aku sampaikan.",
-      "Aku gak mau kamu mikir aku sok-sokan nyari perhatian. Karena aku gak mau kamu balik cuma karena kasihan. No, not like that. Aku cuma pengen kamu tau: aku mikirin kamu. Aku ngerti kenapa kamu marah, kenapa kamu nutup akses komunikasi. And I won’t force that door open.",
-      "Setiap ada notifikasi di HP, otak aku langsung mikir, 'Mungkin ini dia?' Tapi ya enggak. Kamu gak ada. Kamu pergi beneran. Dan sekarang aku baru ngerti... kehilangan bukan cuma tentang gak bisa lihat kamu lagi, tapi tentang gak punya kesempatan buat minta maaf langsung ke orang yang paling layak aku mintain maaf.",
-      "Aku juga manusia, Reffa. Aku bisa salah. Tapi aku juga punya rasa. Dan sekarang rasanya tuh kayak berdiri di tengah panggung kosong yang pernah penuh suara kamu.",
-      "Kadang aku ngebayangin, kalo misalnya satu hari kita ketemu lagi, aku pengen banget bilang hal yang gak sempat aku sampaikan: 'Aku gak pernah niat buat nyakitin kamu. Aku cuma terlalu bodoh buat jaga kamu.'",
-      "I won’t ask you to forgive me. I just wish you’d remember that I never wanted to be your regret. I wanted to be your safe place. Tapi kenyataannya aku malah jadi alasan kamu pergi.",
-      "Mungkin sekarang semua tentang aku udah kabur dari ingatan kamu—dan kalau iya, aku bisa terima itu. Tapi kalau ada satu-dua hal kecil yang masih tersisa, biarlah itu jadi kenangan yang gak bikin kamu marah lagi suatu hari nanti.",
-      "Biar waktu yang jawab semuanya. Kalau kamu butuh waktu seminggu, sebulan, setahun, bahkan selamanya... I’ll live with that. Tapi aku akan tetap berharap, someday, kamu bisa lihat ke belakang dan tau kalau aku gak cuma penyesalan—aku adalah seseorang yang betul-betul peduli, tapi datang dengan cara yang salah.",
-      "Aku gak akan ganggu kamu lagi, Reffa. Tapi tolong jangan lupakan aku sepenuhnya. Please don’t treat me like I never existed. Itu aja.",
-      "Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.",
-      "Dari aku, yang dulu sempat jadi temen kamu. Dan sampai sekarang, masih bertaut, walau kamu udah lepasin."
+      "Hai Reffa, ini bukan sekadar halaman web biasa.",
+      "Aku bikin ini karena ada hal-hal yang mungkin nggak sempat aku sampaikan langsung.",
+      "Terima kasih karena udah jadi bagian dari cerita hidupku, walau mungkin nggak lama.",
+      "Aku banyak belajar dari kamu—tentang sabar, tentang memahami orang lain, dan tentang menerima kenyataan.",
+      "Kalau aku pernah salah atau nyakitin, aku minta maaf dari hati yang paling dalam.",
+      "Nggak semua yang direncanakan berjalan sesuai harapan, tapi aku tetap bersyukur pernah kenal kamu.",
+      "Semoga kamu selalu bahagia, di mana pun kamu berada.",
+      "Aku mungkin nggak ada di samping kamu, tapi doaku selalu nyusul kamu diam-diam."
     ];
+
+    let index = 0;
+    const typingDiv = document.getElementById("typing");
+    const footer = document.querySelector(".footer");
+    const finalMessage = document.getElementById("finalMessage");
+    const videoPopup = document.getElementById("popupVideo");
+
+    function showParagraphs() {
+      if (index < paragraphs.length) {
+        const p = document.createElement("p");
+        p.textContent = paragraphs[index];
+        typingDiv.appendChild(p);
+
+        setTimeout(() => {
+          p.style.opacity = 1;
+          p.style.transform = "translateY(0)";
+        }, 100);
+
+        index++;
+        setTimeout(showParagraphs, 2000);
+      } else {
+        footer.style.opacity = 1;
+        setTimeout(() => {
+          finalMessage.style.opacity = 1;
+          setTimeout(() => {
+            videoPopup.style.display = "block";
+          }, 2000);
+        }, 1500);
+      }
+    }
 
     function start() {
       const name = document.getElementById("nameInput").value.trim().toLowerCase();
-      if (!name) return alert("Tulis namanya dulu dong");
       if (name === "reffa") {
-        alert("Akhirnya dibaca juga. Selamat membaca, Reffa 🤍");
+        document.getElementById("login").style.display = "none";
+        document.querySelector(".container").style.display = "block";
+        showParagraphs();
       } else {
-        alert("Hahaha, aku tahu kamu bukan Reffa. Tapi gapapa, tetap bisa baca 😊");
+        alert("Ups, ini bukan untuk kamu 😋");
       }
-
-      document.getElementById("login").style.display = "none";
-      document.querySelector(".container").style.display = "block";
-      showParagraphs();
     }
 
-    function showParagraphs() {
-      const typingDiv = document.getElementById("typing");
-      paragraphs.forEach((text, i) => {
-        setTimeout(() => {
-          const p = document.createElement("p");
-          p.textContent = text;
-          typingDiv.appendChild(p);
-          setTimeout(() => {
-            p.style.opacity = 1;
-            p.style.transform = "translateY(0)";
-          }, 100);
-          if (i === paragraphs.length - 1) {
-            document.querySelector(".footer").style.opacity = 1;
-            setTimeout(() => {
-              document.getElementById("finalMessage").style.opacity = 1;
-            }, 8000);
-          }
-        }, i * 8000);
-      });
-    }
-
+    const audio = document.getElementById("audio");
     function toggleAudio() {
-      const audio = document.getElementById('audio');
-      const button = document.querySelector('.audio-control');
       if (audio.paused) {
         audio.play();
-        button.textContent = '⏸️ pencet ini reffa buat matiin lagunya dulu';
       } else {
         audio.pause();
-        button.textContent = '🎵 pencet ini biar ga terlalu cringe';
       }
     }
   </script>
