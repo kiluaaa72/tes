@@ -6,7 +6,7 @@
   <title>Untuk Reffa</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+  body {
       background-image: url('https://i.pinimg.com/originals/f4/84/84/f48484d28f3ac6f49802bb6b162fa2d7.gif');
       background-size: cover;
       background-attachment: fixed;
@@ -177,12 +177,9 @@
       max-width: 80%;
       font-family: 'Comic Neue', cursive;
       font-size: 1.2em;
-    }
   </style>
 </head>
 <body>
-
-  <!-- Audio autoplay -->
   <audio id="audio" loop>
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mp3">
     Your browser does not support the audio element.
@@ -211,7 +208,8 @@
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
 
-  <div id="popupVideo">
+  <!-- Hapus video dari awal, tampilkan hanya jika diperlukan di akhir -->
+  <div id="popupVideo" style="display: none">
     <video controls>
       <source src="https://your-video-url.mp4" type="video/mp4">
       Your browser does not support the video tag.
@@ -220,7 +218,7 @@
   </div>
 
   <script>
-    const paragraphs = [...document.querySelectorAll(".typing-effect")].length > 0 ? [] : [
+    const paragraphs = [
       "Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.",
       "Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku. *I was the one who failed you. And you had every right to walk away.*",
       "Setiap hari setelah itu, aku ulang-ulang di kepala aku: \"Kenapa harus aku yang nyakitin dia?\" Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.",
@@ -243,9 +241,8 @@
     function showParagraphs() {
       if (index < paragraphs.length) {
         const p = document.createElement("p");
-        p.textContent = paragraphs[index];
+        p.innerHTML = paragraphs[index];
 
-        // emoji tambahan untuk efek lucu/sentuh
         const emoji = document.createElement("span");
         const emojis = ["🥲", "💔", "🥹", "🫶", "😔", "❤️"];
         emoji.className = "emoji-float";
