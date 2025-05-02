@@ -147,6 +147,14 @@
       max-width: 600px;
       border-radius: 10px;
     }
+    function closeVideo() {
+  const popup = document.getElementById("popupVideo");
+  const video = document.getElementById("localVideo");
+  video.pause();
+  video.currentTime = 0;
+  popup.style.display = "none";
+}
+
   </style>
 </head>
 <body>
@@ -168,13 +176,14 @@
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
 
-<div id="popupVideo">
-  <video id="localVideo" controls autoplay>
+  <div id="popupVideo">
+  <video id="localVideo" controls>
     <source src="123.mp4" type="video/mp4">
     Browser kamu tidak mendukung video.
   </video>
-  <br>
-  <button onclick="closeVideo()" style="margin-top: 10px; padding: 10px 20px; border: none; background-color: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">Tutup</button>
+  <button onclick="closeVideo()" style="margin-top: 15px; padding: 10px 20px; border: none; background: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">
+    Tutup Video
+  </button>
 </div>
 
 
@@ -220,8 +229,9 @@
         setTimeout(() => {
           finalMessage.style.opacity = 1;
           setTimeout(() => {
-            videoPopup.style.display = "block";
-          }, 2000);
+          videoPopup.style.display = "block";
+document.getElementById("localVideo").play();
+ }, 2000);
         }, 1500);
       }
     }
