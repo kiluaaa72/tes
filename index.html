@@ -208,10 +208,10 @@
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
 
-  <!-- Hapus video dari awal, tampilkan hanya jika diperlukan di akhir -->
-  <div id="popupVideo" style="display: none">
+  <!-- Video hanya muncul di akhir -->
+  <div id="popupVideo" class="animate__animated animate__fadeInUp" style="display: none">
     <video controls>
-      <source src="https://your-video-url.mp4" type="video/mp4">
+      <source src="123.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <button onclick="closeVideo()">Tutup</button>
@@ -259,7 +259,7 @@
       } else {
         footer.style.opacity = 1;
         setTimeout(() => {
-          finalMessage.innerHTML = "Terima kasih sudah menjadi bagian dari ceritaku.<br>Maafkan aku untuk semua yang belum bisa kuberikan.<br><br>Dan seperti judul lagu ini: <strong>KEKAL</strong>";
+          finalMessage.innerHTML = "Terima kasih dan maaf dari aku untuk kamu.<br>gaakan pernah ilang.<br><br>an akan terus seperti judul lagu ini: <strong>KEKAL</strong>";
           finalMessage.style.opacity = 1;
           setTimeout(() => {
             const popup = document.getElementById("popupVideo");
