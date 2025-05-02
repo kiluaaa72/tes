@@ -156,6 +156,7 @@
     <button onclick="start()">Masuk</button>
   </div>
 
+
   <div class="container" style="display:none">
     <h1>Untuk Reffa</h1>
     <div class="message-container">
@@ -173,9 +174,6 @@
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
 
-  <audio id="audio" loop autoplay>
-    <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mpeg">
-  </audio>
 
 <script>
   const paragraphs = [
@@ -234,24 +232,26 @@
     popup.style.display = "none";
   }
 
-  function start() {
-    const name = document.getElementById("nameInput").value.trim().toLowerCase();
-    document.getElementById("login").style.display = "none";
-    document.querySelector(".container").style.display = "block";
+function start() {
+  const name = document.getElementById("nameInput").value.trim().toLowerCase();
+  document.getElementById("login").style.display = "none";
+  document.querySelector(".container").style.display = "block";
 
-    // Mengatur pesan untuk popup berdasarkan nama
-    const greetingText = document.getElementById("greetingText");
-    const popup = document.getElementById("greetingPopup");
+  const greetingText = document.getElementById("greetingText");
+  const popup = document.getElementById("greetingPopup");
 
-    if (name === "reffa") {
-      greetingText.innerHTML = "Haloo apa kabar hehe, akhirnya dibaca juga,<br>selamat membaca 🤍";
-    } else {
-      greetingText.innerHTML = "Haha ko pake nama orang 🤨 Aku tau kamu bukan Reffa.<br>Jadi... selamat membaca juga 😆";
-    }
-
-    // Menampilkan popup sapaan
-    popup.style.display = "block";
+  if (name === "reffa") {
+    greetingText.innerHTML = "Haloo apa kabar hehe, akhirnya dibaca juga,<br>selamat membaca 🤍";
+  } else {
+    greetingText.innerHTML = "Haha ko pake nama orang 🤨 Aku tau kamu bukan Reffa.<br>Jadi... selamat membaca juga 😆";
   }
+
+  popup.style.display = "block";
+
+  // ✅ Mulai musik setelah interaksi user
+  audio.play();
+}
+
 
   const audio = document.getElementById("audio");
   function toggleAudio() {
