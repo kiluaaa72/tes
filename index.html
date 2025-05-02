@@ -147,14 +147,6 @@
       max-width: 600px;
       border-radius: 10px;
     }
-    function closeVideo() {
-  const popup = document.getElementById("popupVideo");
-  const video = document.getElementById("localVideo");
-  video.pause();
-  video.currentTime = 0;
-  popup.style.display = "none";
-}
-
   </style>
 </head>
 <body>
@@ -172,18 +164,44 @@
     <div class="footer">— Lana</div>
     <div class="final-message" id="finalMessage">Kata maaf dan terima kasih dari aku untuk kamu akan seperti judul lagu ini: <strong>KEKAL</strong></div>
   </div>
+<div id="greetingPopup" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 9999;
+  text-align: center;
+  max-width: 80%;
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.2em;
+">
+  <p id="greetingText"></p>
+  <button onclick="closeGreeting()" style="
+    margin-top: 20px;
+    background-color: #ff7a94;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  ">Lanjut</button>
+</div>
 
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
 
-  <div id="popupVideo">
-  <video id="localVideo" controls>
+<div id="popupVideo">
+  <video id="localVideo" controls autoplay>
     <source src="123.mp4" type="video/mp4">
     Browser kamu tidak mendukung video.
   </video>
-  <button onclick="closeVideo()" style="margin-top: 15px; padding: 10px 20px; border: none; background: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">
-    Tutup Video
-  </button>
+  <br>
+  <button onclick="closeVideo()" style="margin-top: 10px; padding: 10px 20px; border: none; background-color: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">Tutup</button>
 </div>
 
 
@@ -229,19 +247,39 @@
         setTimeout(() => {
           finalMessage.style.opacity = 1;
           setTimeout(() => {
-          videoPopup.style.display = "block";
-document.getElementById("localVideo").play();
- }, 2000);
+            videoPopup.style.display = "block";
+          }, 2000);
         }, 1500);
       }
     }
+function closeVideo() {
+  const popup = document.getElementById("popupVideo");
+  const video = document.getElementById("localVideo");
+  video.pause();
+  popup.style.display = "none";
+}
 
-    function start() {
-      const name = document.getElementById("nameInput").value.trim().toLowerCase();
-      document.getElementById("login").style.display = "none";
-      document.querySelector(".container").style.display = "block";
-      showParagraphs();
-    }
+
+function start() {
+  const name = document.getElementById("nameInput").value.trim().toLowerCase();
+  document.getElementById("login").style.display = "none";
+  document.querySelector(".container").style.display = "block";
+
+  // Mengatur pesan untuk popup berdasarkan nama
+  const greetingText = document.getElementById("greetingText");
+  const popup = document.getElementById("greetingPopup");
+
+  if (name === "reffa") {
+    greetingText.innerHTML = "Haloo apa kabar hehe, akhirnya dibaca juga,<br>selamat membaca 🤍";
+  } else {
+    greetingText.innerHTML = "Haha ko pake nama orang 🤨 Aku tau kamu bukan Reffa.<br>Jadi... selamat membaca juga 😆";
+  }
+
+  // Menampilkan popup sapaan
+  popup.style.display = "block";
+}
+
+
 
     const audio = document.getElementById("audio");
     function toggleAudio() {
@@ -251,6 +289,11 @@ document.getElementById("localVideo").play();
         audio.pause();
       }
     }
+function closeGreeting() {
+  document.getElementById("greetingPopup").style.display = "none";
+  showParagraphs();
+}
+
   </script>
 </body>
 </html>
