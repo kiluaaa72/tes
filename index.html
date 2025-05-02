@@ -185,94 +185,93 @@
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mpeg">
   </audio>
 
-  <script>
-    const paragraphs = [
-      "Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.",
-      "Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku. *I was the one who failed you. And you had every right to walk away.*",
-      "Setiap hari setelah itu, aku ulang-ulang di kepala aku: \"Kenapa harus aku yang nyakitin dia?\" Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.",
-      "Aku tahu kamu suka Nadin, dan jujur aku pun mulai sering dengerin lagu-lagunya. Bukan buat bikin kamu luluh—just... karena aku pengen ngerti sedikit aja isi dari dunia kamu yang pernah aku sentuh. Misalnya waktu aku denger lirik: *“Bukan maksudku membawa bencana, aku hanya rindu”*... itu aku banget sekarang.",
-      "Aku gak mau kamu mikir aku nyari simpati. Aku ngerti kenapa kamu marah dan nutup semua akses. And I won’t force that door open. Tapi aku harap kamu gak nutup rapat selamanya.",
-      "Aku juga manusia, Reffa. Aku bisa salah. Tapi aku juga punya rasa. Dan sekarang rasanya tuh kayak berdiri di tengah panggung kosong yang pernah penuh suara kamu.",
-      "*I won’t ask you to forgive me. I just wish you’d remember that I never wanted to be your regret. I wanted to be your safe place.*",
-      "Mungkin sekarang semua tentang aku udah kabur dari ingatan kamu—dan kalau iya, aku bisa terima itu. Tapi kalau ada satu-dua hal kecil yang masih tersisa, biarlah itu jadi kenangan yang gak bikin kamu marah lagi suatu hari nanti.",
-      "Biar waktu yang jawab semuanya. Aku gak akan ganggu kamu lagi, Reffa. Tapi tolong jangan lupakan aku sepenuhnya.",
-      "*Please don’t treat me like I never existed.*",
-      "Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.",
-      "Dari aku, yang dulu sempat jadi bagian hidup kamu. Dan sampai sekarang, masih bertaut, walau kamu udah lepasin."
-    ];
+<script>
+  const paragraphs = [
+    "Kalau kamu baca ini... berarti kamu masih mau tahu sedikit aja isi kepala atau hati aku. Dan kalau pun enggak, aku nulis ini buat pelan-pelan nenangin sesuatu dalam diriku yang belum bisa tenang sejak kamu mutusin buat pergi.",
+    "Aku gak akan banyak alasan. Aku tahu, dari semua hal yang pernah kamu lewati, kamu gak pantas dapet luka dari orang yang kamu percaya. Dan sialnya, itu aku. *I was the one who failed you. And you had every right to walk away.*",
+    "Setiap hari setelah itu, aku ulang-ulang di kepala aku: \"Kenapa harus aku yang nyakitin dia?\" Padahal kamu orang yang gak pernah nuntut banyak, gak pernah bikin aku ngerasa kecil. Tapi justru aku yang ngecilin kamu lewat kata-kata aku sendiri.",
+    "Aku tahu kamu suka Nadin, dan jujur aku pun mulai sering dengerin lagu-lagunya. Bukan buat bikin kamu luluh—just... karena aku pengen ngerti sedikit aja isi dari dunia kamu yang pernah aku sentuh. Misalnya waktu aku denger lirik: *“Bukan maksudku membawa bencana, aku hanya rindu”*... itu aku banget sekarang.",
+    "Aku gak mau kamu mikir aku nyari simpati. Aku ngerti kenapa kamu marah dan nutup semua akses. And I won’t force that door open. Tapi aku harap kamu gak nutup rapat selamanya.",
+    "Aku juga manusia, Reffa. Aku bisa salah. Tapi aku juga punya rasa. Dan sekarang rasanya tuh kayak berdiri di tengah panggung kosong yang pernah penuh suara kamu.",
+    "*I won’t ask you to forgive me. I just wish you’d remember that I never wanted to be your regret. I wanted to be your safe place.*",
+    "Mungkin sekarang semua tentang aku udah kabur dari ingatan kamu—dan kalau iya, aku bisa terima itu. Tapi kalau ada satu-dua hal kecil yang masih tersisa, biarlah itu jadi kenangan yang gak bikin kamu marah lagi suatu hari nanti.",
+    "Biar waktu yang jawab semuanya. Aku gak akan ganggu kamu lagi, Reffa. Tapi tolong jangan lupakan aku sepenuhnya.",
+    "*Please don’t treat me like I never existed.*",
+    "Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.",
+    "Dari aku, yang dulu sempat jadi bagian hidup kamu. Dan sampai sekarang, masih bertaut, walau kamu udah lepasin."
+  ];
 
-    let index = 0;
-    const typingDiv = document.getElementById("typing");
-    const footer = document.querySelector(".footer");
-    const finalMessage = document.getElementById("finalMessage");
-    const videoPopup = document.getElementById("popupVideo");
+  let index = 0;
+  const typingDiv = document.getElementById("typing");
+  const footer = document.querySelector(".footer");
+  const finalMessage = document.getElementById("finalMessage");
+  const videoPopup = document.getElementById("popupVideo");
 
-    function showParagraphs() {
-      if (index < paragraphs.length) {
-        const p = document.createElement("p");
-        p.textContent = paragraphs[index];
-        typingDiv.appendChild(p);
+  function showParagraphs() {
+    if (index < paragraphs.length) {
+      const p = document.createElement("p");
+      p.textContent = paragraphs[index];
+      typingDiv.appendChild(p);
+      setTimeout(() => {
+        p.style.opacity = 1;
+        p.style.transform = "translateY(0)";
+      }, 100);
+      index++;
+      setTimeout(showParagraphs, 7000);
+    } else {
+      footer.style.opacity = 1;
+      setTimeout(() => {
+        finalMessage.style.opacity = 1;
+        finalMessage.innerHTML = "Terima kasih dan maaf dari aku .<br><br>seperti judul lagu ini:KEKAL";
         setTimeout(() => {
-          p.style.opacity = 1;
-          p.style.transform = "translateY(0)";
-        }, 100);
-        index++;
-        setTimeout(showParagraphs, 7000);
-      } else {
-        footer.style.opacity = 1;
-        setTimeout(() => {
-          // Tambahkan kata terakhir
-          finalMessage.innerHTML = "Terima kasih dan maaf dari .<br><br>D seperti judul lagu ini:KEKAL";
-          finalMessage.style.opacity = 1;
-          setTimeout(() => {
-            videoPopup.style.display = "block";
-            const videoPlayer = document.getElementById("localVideo");
-            videoPlayer.play();
-          }, 4000); // Tambah delay sebelum video muncul
-        }, 1500);
-      }
+          videoPopup.style.display = "block"; // Video muncul setelah final message
+          const videoPlayer = document.getElementById("localVideo");
+          videoPlayer.play();
+        }, 2000); // Delay 2 detik sebelum video muncul
+      }, 1500); // Tunda final message muncul
+    }
+  }
+
+  function closeVideo() {
+    const popup = document.getElementById("popupVideo");
+    const video = document.getElementById("localVideo");
+    video.pause();
+    popup.style.display = "none";
+  }
+
+  function start() {
+    const name = document.getElementById("nameInput").value.trim().toLowerCase();
+    document.getElementById("login").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+
+    // Mengatur pesan untuk popup berdasarkan nama
+    const greetingText = document.getElementById("greetingText");
+    const popup = document.getElementById("greetingPopup");
+
+    if (name === "reffa") {
+      greetingText.innerHTML = "Haloo apa kabar hehe, akhirnya dibaca juga,<br>selamat membaca 🤍";
+    } else {
+      greetingText.innerHTML = "Haha ko pake nama orang 🤨 Aku tau kamu bukan Reffa.<br>Jadi... selamat membaca juga 😆";
     }
 
-    function closeVideo() {
-      const popup = document.getElementById("popupVideo");
-      const video = document.getElementById("localVideo");
-      video.pause();
-      popup.style.display = "none";
+    // Menampilkan popup sapaan
+    popup.style.display = "block";
+  }
+
+  const audio = document.getElementById("audio");
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
     }
+  }
 
-    function start() {
-      const name = document.getElementById("nameInput").value.trim().toLowerCase();
-      document.getElementById("login").style.display = "none";
-      document.querySelector(".container").style.display = "block";
+  function closeGreeting() {
+    document.getElementById("greetingPopup").style.display = "none";
+    showParagraphs();
+  }
+</script>
 
-      // Mengatur pesan untuk popup berdasarkan nama
-      const greetingText = document.getElementById("greetingText");
-      const popup = document.getElementById("greetingPopup");
-
-      if (name === "reffa") {
-        greetingText.innerHTML = "Haloo apa kabar hehe, akhirnya dibaca juga,<br>selamat membaca 🤍";
-      } else {
-        greetingText.innerHTML = "Haha ko pake nama orang 🤨 Aku tau kamu bukan Reffa.<br>Jadi... selamat membaca juga 😆";
-      }
-
-      // Menampilkan popup sapaan
-      popup.style.display = "block";
-    }
-
-    const audio = document.getElementById("audio");
-    function toggleAudio() {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-
-    function closeGreeting() {
-      document.getElementById("greetingPopup").style.display = "none";
-      showParagraphs();
-    }
-
-  </script>
 </body>
 </html>
