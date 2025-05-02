@@ -164,7 +164,7 @@
     <div class="footer">— Lana</div>
     <div class="final-message" id="finalMessage">Kata maaf dan terima kasih dari aku untuk kamu akan seperti judul lagu ini: <strong>KEKAL</strong></div>
   </div>
-  
+
   <div id="greetingPopup" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999; text-align: center; max-width: 80%; font-family: 'Comic Neue', cursive; font-size: 1.2em;">
     <p id="greetingText"></p>
     <button onclick="closeGreeting()" style="margin-top: 20px; background-color: #ff7a94; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">Lanjut</button>
@@ -172,14 +172,6 @@
 
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
   <div class="floating-heart">❤️</div>
-
-  <video id="localVideo" controls>
-    <source src="123.mp4" type="video/mp4">
-    Browser kamu tidak mendukung video.
-  </video>
-
-  <br>
-  <button onclick="closeVideo()" style="margin-top: 10px; padding: 10px 20px; border: none; background-color: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">Tutup</button>
 
   <audio id="audio" loop autoplay>
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mpeg">
@@ -205,18 +197,7 @@
   const typingDiv = document.getElementById("typing");
   const footer = document.querySelector(".footer");
   const finalMessage = document.getElementById("finalMessage");
-  const videoPopup = document.getElementById("popupVideo");
 
-<!-- Hapus bagian video yang ada di body -->
-<div id="popupVideo" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 9999;">
-  <video controls style="width: 100%; max-width: 600px; border-radius: 10px;">
-    <source src="123.mp4" type="video/mp4">
-    Browser kamu tidak mendukung video
-  </video>
-  <button onclick="closeVideo()" style="margin-top: 10px; padding: 10px 20px; border: none; background-color: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">Tutup</button>
-</div>
-
-<script>
   function showParagraphs() {
     if (index < paragraphs.length) {
       const p = document.createElement("p");
@@ -231,7 +212,6 @@
     } else {
       footer.style.opacity = 1;
       setTimeout(() => {
-        // Update pesan terakhir
         finalMessage.innerHTML = "Terima kasih sudah menjadi bagian dari ceritaku.<br>Maafkan aku untuk semua yang belum bisa kuberikan.<br><br>Dan seperti judul lagu ini: <strong>KEKAL</strong>";
         finalMessage.style.opacity = 1;
         
@@ -253,7 +233,6 @@
     video.pause();
     popup.style.display = "none";
   }
-</script>
 
   function start() {
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
