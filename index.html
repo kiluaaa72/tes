@@ -207,6 +207,16 @@
   const finalMessage = document.getElementById("finalMessage");
   const videoPopup = document.getElementById("popupVideo");
 
+<!-- Hapus bagian video yang ada di body -->
+<div id="popupVideo" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,0.95); padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 9999;">
+  <video controls style="width: 100%; max-width: 600px; border-radius: 10px;">
+    <source src="123.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video
+  </video>
+  <button onclick="closeVideo()" style="margin-top: 10px; padding: 10px 20px; border: none; background-color: #ff7a94; color: white; border-radius: 8px; cursor: pointer;">Tutup</button>
+</div>
+
+<script>
   function showParagraphs() {
     if (index < paragraphs.length) {
       const p = document.createElement("p");
@@ -221,23 +231,29 @@
     } else {
       footer.style.opacity = 1;
       setTimeout(() => {
+        // Update pesan terakhir
+        finalMessage.innerHTML = "Terima kasih sudah menjadi bagian dari ceritaku.<br>Maafkan aku untuk semua yang belum bisa kuberikan.<br><br>Dan seperti judul lagu ini: <strong>KEKAL</strong>";
         finalMessage.style.opacity = 1;
-        finalMessage.innerHTML = "Terima kasih dan maaf dari aku .<br><br>seperti judul lagu ini:KEKAL";
+        
+        // Tampilkan video popup setelah 3 detik
         setTimeout(() => {
-          videoPopup.style.display = "block"; // Video muncul setelah final message
-          const videoPlayer = document.getElementById("localVideo");
+          const popup = document.getElementById("popupVideo");
+          const videoPlayer = popup.querySelector("video");
+          popup.style.display = "block";
           videoPlayer.play();
-        }, 2000); // Delay 2 detik sebelum video muncul
-      }, 1500); // Tunda final message muncul
+        }, 3000);
+        
+      }, 1500);
     }
   }
 
   function closeVideo() {
     const popup = document.getElementById("popupVideo");
-    const video = document.getElementById("localVideo");
+    const video = popup.querySelector("video");
     video.pause();
     popup.style.display = "none";
   }
+</script>
 
   function start() {
     const name = document.getElementById("nameInput").value.trim().toLowerCase();
