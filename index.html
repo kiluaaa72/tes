@@ -43,15 +43,22 @@
       position: relative;
     }
 
-    .typing-effect p {
-      font-size: 1.2em;
-      line-height: 1.8;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-      margin-bottom: 20px;
-      position: relative;
-    }
+.typing-effect p {
+  max-width: 80%;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+  font-size: 1.1em;
+  line-height: 1.6;
+  word-wrap: break-word;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.75); /* bubble putih transparan */
+  color: #333;
+}
+
 
     .emoji-float {
       position: absolute;
@@ -232,8 +239,9 @@
 
     function showParagraphs() {
       if (index < paragraphs.length) {
-        const p = document.createElement("p");
-        p.innerHTML = paragraphs[index];
+      const p = document.createElement("p");
+p.innerHTML = paragraphs[index];  // tanpa class bubble-left/bubble-right
+
 
         const emoji = document.createElement("span");
         const emojis = ["🥲", "💔", "🥹", "🫶", "😔", "❤️"];
