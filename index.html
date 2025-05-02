@@ -221,10 +221,14 @@
       } else {
         footer.style.opacity = 1;
         setTimeout(() => {
+          // Tambahkan kata terakhir
+          finalMessage.innerHTML = "Terima kasih dan maaf dari .<br><br>D seperti judul lagu ini:KEKAL";
           finalMessage.style.opacity = 1;
           setTimeout(() => {
             videoPopup.style.display = "block";
-          }, 2000);
+            const videoPlayer = document.getElementById("localVideo");
+            videoPlayer.play();
+          }, 4000); // Tambah delay sebelum video muncul
         }, 1500);
       }
     }
