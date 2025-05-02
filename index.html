@@ -263,14 +263,25 @@
       }
     }
 
-    function toggleAudio() {
-      const audio = document.getElementById("audio");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
+function toggleAudio() {
+  const audio = document.getElementById("audio");      // lagu Nadin
+  const funAudio = document.getElementById("funAudio"); // lagu lucu
+
+  if (!funAudio.paused) {
+    // Kalau lagu lucu lagi nyala, stop dan nyalain lagu Nadin
+    funAudio.pause();
+    funAudio.currentTime = 0;
+    audio.play();
+  } else if (!audio.paused) {
+    // Kalau lagu Nadin lagi nyala, stop dan nyalain lagu lucu
+    audio.pause();
+    audio.currentTime = 0;
+    funAudio.play();
+  } else {
+    // Kalau dua-duanya mati, nyalain lagu Nadin aja
+    audio.play();
+  }
+}
 
     function start() {
       const name = document.getElementById("nameInput").value.trim().toLowerCase();
@@ -302,12 +313,22 @@
     }
 
     // Tambahan JavaScript untuk ledakan emoji
- function explodeEmojis() {
-  const audio = document.getElementById("audio");
-  const funAudio = document.getElementById("funAudio");
-  audio.pause(); // stop lagu Nadin
-  funAudio.play(); // mainkan lagu lucu
+function explodeEmojis() {
+  const audio = document.getElementById("audio");      // lagu Nadin
+  const funAudio = document.getElementById("funAudio"); // lagu lucu
 
+  // Toggle antara dua audio
+  if (!funAudio.paused) {
+    funAudio.pause();
+    funAudio.currentTime = 0;
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    funAudio.play();
+  }
+
+  // Efek emoji seperti sebelumnya
   const emojis = ["😻", "😘", "💋", "😍", "💞", "💕", "🌸", "🐣"];
   for (let i = 0; i < 20; i++) {
     const emoji = document.createElement("div");
@@ -323,6 +344,7 @@
     setTimeout(() => emoji.remove(), 2000);
   }
 }
+
 
   </script>
 </body>
