@@ -105,35 +105,13 @@
       color: #ff4d4d;
       animation: float 3s ease-in-out infinite;
       text-shadow: 0 0 10px rgba(255,77,77,0.5);
-      z-index: 10;
+      z-index: 999;
+      cursor: pointer;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(10deg); }
-    }
-
-    #login {
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    #login input {
-      padding: 12px;
-      font-size: 16px;
-      margin-right: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    #login button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #ff7a94;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
     }
 
     .final-message {
@@ -177,6 +155,16 @@
       max-width: 80%;
       font-family: 'Comic Neue', cursive;
       font-size: 1.2em;
+    }
+
+    /* Tambahan CSS untuk animasi emoji */
+    @keyframes flyAway {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { 
+        opacity: 0; 
+        transform: translate(-300px, -300px) scale(1.5); 
+      }
+    }
   </style>
 </head>
 <body>
@@ -184,6 +172,12 @@
     <source src="Nadin Amizah - Kekal (Official Lyric Video).mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
+  
+  <audio id="funAudio">
+  <source src="111111.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
 
   <div id="login">
     <input type="text" id="nameInput" placeholder="Masukkan nama kamu...">
@@ -206,9 +200,8 @@
   </div>
 
   <button class="audio-control" onclick="toggleAudio()">🎵 Pencet ini Reffa</button>
-  <div class="floating-heart">❤️</div>
+  <div class="floating-heart" onclick="explodeEmojis()">❤️</div>
 
-  <!-- Video hanya muncul di akhir -->
   <div id="popupVideo" class="animate__animated animate__fadeInUp" style="display: none">
     <video controls>
       <source src="123.mp4" type="video/mp4">
@@ -231,8 +224,6 @@
       "*Please don’t treat me like I never existed.plis buka juga blokirannya biar aku bisa tau hidup kamu*",
       "Dan kalau suatu hari kamu bisa baca ini tanpa sakit, tanpa marah—mungkin itu artinya kamu udah bisa bahagia lagi. Dan kalau kamu bahagia, meskipun bukan karena aku, aku akan belajar untuk ikut bahagia juga.",
       "Dari aku, yang dulu sempat jadi temen kamu. Dan sampai sekarang, masih bertaut, walau kamu udah lepasin."
-    ];
-
     let index = 0;
     const typingDiv = document.getElementById("typing");
     const footer = document.querySelector(".footer");
@@ -308,6 +299,31 @@
       video.pause();
       popup.style.display = "none";
     }
+
+    // Tambahan JavaScript untuk ledakan emoji
+ function explodeEmojis() {
+  const audio = document.getElementById("audio");
+  const funAudio = document.getElementById("funAudio");
+  audio.pause(); // stop lagu Nadin
+  funAudio.play(); // mainkan lagu lucu
+
+  const emojis = ["😻", "😘", "💋", "😍", "💞", "💕", "🌸", "🐣"];
+  for (let i = 0; i < 20; i++) {
+    const emoji = document.createElement("div");
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.position = "fixed";
+    emoji.style.zIndex = 9999;
+    emoji.style.fontSize = "2em";
+    emoji.style.left = `${window.innerWidth - 100}px`;
+    emoji.style.top = `${100 + Math.random() * 100}px`;
+    emoji.style.animation = `flyAway 2s ease-out forwards`;
+    emoji.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(emoji);
+
+    setTimeout(() => emoji.remove(), 2000);
+  }
+}
+
   </script>
 </body>
 </html>
